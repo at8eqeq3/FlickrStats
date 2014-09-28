@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %title FlickrStats
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .ui.menu
+      .item
+        %i.dashboard.icon
+        Dashboard
+      .item
+        %i.camera.icon
+        Photos
+      .item
+        %i.magic.icon
+        Epic
+      .item
+        %i.info.icon
+        About
+      .item
+        %i.help.icon
+        Help
+      .right.menu
+        .item
+          - if false
+            %i.sign.out.icon
+            Sign out
+          - else
+            %i.sign.in.icon
+            Sign in
+    = yield
