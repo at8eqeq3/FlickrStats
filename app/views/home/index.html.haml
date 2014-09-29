@@ -1,4 +1,17 @@
-%h1.ui.header
-  %i.dashboard.icon
-  .content
-    = t(:'.title')
+- if current_user
+  %h1.ui.header
+    %i.dashboard.icon
+    .content
+      = t(:'.title')
+- else
+  .ui.red.center.aligned.segment
+    %h1.ui.dividing.header
+      FlickrStats
+      .sub.header
+        = t(:'.subheader')
+    %p= t(:'.landing_description')
+    %p
+      %a.ui.huge.green.labeled.icon.button
+        %i.flickr.icon
+        = t(:'signin')
+    %p= t(:'.landing_extra')

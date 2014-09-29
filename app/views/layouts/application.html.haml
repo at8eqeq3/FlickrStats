@@ -2,32 +2,60 @@
 %html
   %head
     %title FlickrStats
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     .ui.menu
-      .item
-        %i.dashboard.icon
-        Dashboard
-      .item
-        %i.camera.icon
-        Photos
-      .item
-        %i.magic.icon
-        Epic
+      - if current_user
+        .item
+          %i.dashboard.icon
+          %a{href: '/'}
+            = t(:'layout.dashboard')
+        .item
+          %i.camera.icon
+          %a{href: '/photos'}
+            = t(:'layout.photos')
+        .item
+          %i.open.folder.icon
+          %a{href: '/albums'}
+            = t(:'layout.albums')
+        .item
+          %i.magic.icon
+          %a{href: '/epic'}
+            = t(:'layout.epic')
+      - else
+        .item
+          %i.home.icon
+          %a{href: '/'}
+            = t(:'layout.home')
       .item
         %i.info.icon
-        About
+        %a{href: '/about'}
+          = t(:'layout.about')
       .item
         %i.help.icon
-        Help
+        %a{href: '/help'}
+          = t(:'layout.help')
       .right.menu
         .item
-          - if false
+          - if current_user
             %i.sign.out.icon
-            Sign out
+              %a{href: '/signout'}
+              = t(:'layout.signout')
           - else
             %i.sign.in.icon
-            Sign in
+            %a{href: '/signin'}
+              = t(:'layout.signin')
+    - flash.each do |name, msg|
+      .ui.large.message{class: name.to_s}
+        %i.close.icon
+        = msg
     = yield
+    .ui.divider
+    .footer.ui.three.column.divided.grid
+      .row
+        .column= t(:'layout.credits.first')
+        .column= t(:'layout.credits.second')
+        .column= t(:'layout.credits.third')
