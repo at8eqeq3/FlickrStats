@@ -13,11 +13,11 @@ class SessionsController < ApplicationController
       #FetchPhotosWorker.perform_async(user.id)
     end
     session[:user_id] = user.id
-    redirect_to root_url, notice: t(:'.logged_in')
+    redirect_to root_url, success: t(:'.logged_in')
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: t(:'.logged_out')
+    redirect_to root_url, success: t(:'.logged_out')
   end
 end

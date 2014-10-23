@@ -42,11 +42,11 @@
         .item
           - if current_user
             %i.sign.out.icon
-              %a{href: '/signout'}
+            %a{href: '/logout'}
               = t(:'layout.signout')
           - else
             %i.sign.in.icon
-            %a{href: '/signin'}
+            %a{href: '/auth/flickr'}
               = t(:'layout.signin')
     - flash.each do |name, msg|
       .ui.large.message{class: name.to_s}
