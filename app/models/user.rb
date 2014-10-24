@@ -32,7 +32,7 @@ class User
     self.userpic    = auth['info']['image']
   end
 
-  #embeds_many :photos
+  embeds_many :photos
   #embeds_many :user_metrics
   # XXX has_many :latest_metrics, -> {order("created_on DESC").limit(6)}, class_name: "UserMetric"
 end
